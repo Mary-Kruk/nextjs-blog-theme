@@ -1,67 +1,99 @@
-import Link from 'next/link';
-import { getPosts } from '../utils/mdx-utils';
-
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Layout, { GradientBackground } from '../components/Layout';
-import ArrowIcon from '../components/ArrowIcon';
-import { getGlobalData } from '../utils/global-data';
-import SEO from '../components/SEO';
-
-export default function Index({ posts, globalData }) {
-  return (
-    <Layout>
-      <SEO title={globalData.name} description={globalData.blogTitle} />
-      <Header name={globalData.name} />
-      <main className="w-full">
-        <h1 className="text-3xl lg:text-5xl text-center mb-12">
-          {globalData.blogTitle}
-        </h1>
-        <ul className="w-full">
-          {posts.map((post) => (
-            <li
-              key={post.filePath}
-              className="md:first:rounded-t-lg md:last:rounded-b-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b hover:border-b hovered-sibling:border-t-0"
-            >
-              <Link
-                as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-                href={`/posts/[slug]`}
-              >
-                <a className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
-                  {post.data.date && (
-                    <p className="uppercase mb-3 font-bold opacity-60">
-                      {post.data.date}
-                    </p>
-                  )}
-                  <h2 className="text-2xl md:text-3xl">{post.data.title}</h2>
-                  {post.data.description && (
-                    <p className="mt-3 text-lg opacity-60">
-                      {post.data.description}
-                    </p>
-                  )}
-                  <ArrowIcon className="mt-4" />
-                </a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </main>
-      <Footer copyrightText={globalData.footerText} />
-      <GradientBackground
-        variant="large"
-        className="fixed top-20 opacity-40 dark:opacity-60"
-      />
-      <GradientBackground
-        variant="small"
-        className="absolute bottom-0 opacity-20 dark:opacity-10"
-      />
-    </Layout>
-  );
-}
-
-export function getStaticProps() {
-  const posts = getPosts();
-  const globalData = getGlobalData();
-
-  return { props: { posts, globalData } };
-}
+/* Додайте додатковий контент або стилізації, які не пов'язані з фоновим зображенням */
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('friends1.jpg'); /* Замініть 'friends1.jpg' на відповідний шлях до вашого файлу в папці public */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right top;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  main {
+    width: 1000px; /* Задайте бажану максимальну ширину */
+    margin: 0 auto; /* Вирівняти контейнер по центру */
+    padding: 2em;
+    background-color:  rgb(198, 222, 255);/* Білий фон */
+    color: black; /* Колір тексту */
+    font-family: 'Courier New', monospace;
+  
+    /* Додайте інші стилізації для вашого контенту */
+  }
+  
+  
+  nav a {
+    color:  #80b4e1; /* Синьо-голубий колір тексту */
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Підсвічування при наведенні */
+  nav a:hover {
+    background-color:  #80b4e1; /* Темно-синьо-голубий фон при наведенні */
+    color: white;
+  }
+  
+  /* Підсвічування при натисканні */
+  nav a:active {
+    background-color: #506a7f; /* Ще темніший синьо-голубий фон при натисканні */
+  }
+  
+  header {
+    background-color: #80b4e1; /* Синьо-голубий фон заголовку */
+    color: white;
+    text-align: center;
+    padding: 1em;
+  }
+  
+  nav {
+    background-color: #cce4fc; /* Темно-синьо-голубий фон навігації */
+    padding: 1em;
+  }
+  
+  footer {
+    background-color: #80b4e1; /* Синьо-голубий фон футера */
+    color: white;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+  
+  /* Додайте новий стиль для авторського права */
+  footer p {
+    margin: 0; /* Видаляє внутрішні відступи, щоб текст був точно посередині */
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 1em;
+  }
+  
+  main {
+    padding: 2em;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  main {
+    flex: 1;
+  }
+  /* Додайте ці стилі в ваш файл style.css */
+  /* Додайте ці стилі в ваш файл style.css */
+  
